@@ -46,6 +46,10 @@ The demo password is `Acme-HR-2026` unless `HR_PASSWORD` is set. It is a seeded 
 
 The seed is deterministic (`Random.new(42)`), uses `insert_all` in batches, and builds salaries from country bands. A faker gem would add a dependency and make the workforce look random in a way that hides bad currency handling. Tests exercise a small generated workforce plus hand-built cases. They do not insert 10,000 rows on every run. The default count is asserted so the plan cannot silently shrink.
 
+## Ruby 3.2.2 and Rails 7.2 stay
+
+The brief pins Ruby 3.2.2, and the repository was generated on Rails 7.2.4. Both are past upstream support as of this assessment date. Upgrading either would fight the pinned toolchain for a warning, not for a behavior we need. Brakeman’s end-of-life checks are skipped in `config/brakeman.yml` for that reason. Every other check still runs.
+
 ## Tests
 
 Minitest, because the app already used it. Coverage sits on the rules that would corrupt pay: parsing, currency match, effective dates, payroll membership, directory salary sort, auth, and the CSV. The React layer is a client of that API. A browser pass checks the flows; a component test suite would mostly restate the same contract.

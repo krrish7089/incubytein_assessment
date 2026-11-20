@@ -11,6 +11,9 @@ module IncubyteinAssessment
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.2
 
+    # Dates on salary records are calendar dates. Keep "today" stable in UTC.
+    config.time_zone = "UTC"
+
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
