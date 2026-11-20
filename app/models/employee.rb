@@ -26,6 +26,10 @@ class Employee < ApplicationRecord
     PAID_STATUSES.include?(status)
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def current_salary(as_of = Date.current)
     salary_records.where(effective_on: ..as_of).order(effective_on: :desc).first
   end
