@@ -22,4 +22,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  root "spa#index"
+  get "*path", to: "spa#index", constraints: lambda { |request|
+    request.get? && request.format.html? && !request.path.start_with?("/api", "/rails", "/vite", "/assets", "/up")
+  }
 end
