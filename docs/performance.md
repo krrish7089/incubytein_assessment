@@ -12,7 +12,17 @@ Pagination is offset/limit, capped at 100 rows. Offset into 10,000 is cheap. Key
 
 ## What we measured
 
-Numbers below are from a local run after `bin/rails db:seed` on Ruby 3.2.2 and SQLite, single shot, development cache off. Re-run `bin/rails runner scripts/benchmark_snapshot.rb` after a seed if the machine changes. The checked-in figure is the one from the implementation pass and is also printed by that script.
+Local run after `bin/rails db:seed` on Ruby 3.2.2, SQLite, development cache off. Re-run `bin/rails runner scripts/benchmark_snapshot.rb` if the machine changes.
+
+| Step | Result |
+| --- | --- |
+| Seed of 10,000 employees and 15,326 salary rows | 2.4 seconds |
+| People on payroll | 9,621 (active and on leave with a salary effective today) |
+| One dashboard snapshot | about 420 ms |
+| One directory page of 25 | about 10 ms |
+| Salary sort inside the United States | about 12 ms |
+
+The snapshot time is Active Record turning those current rows, with country and department, into objects, then summing them in Ruby. It is one HR manager, not a public page. A pluck of the four columns we actually aggregate would be the next cut if 420 ms ever showed up in the UI. It is not worth a cache.
 
 Rails 7.2’s SQLite defaults are already the ones this app wants: WAL, `synchronous = NORMAL`, foreign keys, 128MB mmap. No extra pragma layer was added.
 

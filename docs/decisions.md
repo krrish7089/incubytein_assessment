@@ -52,7 +52,7 @@ The brief pins Ruby 3.2.2, and the repository was generated on Rails 7.2.4. Both
 
 ## Tests
 
-Minitest, because the app already used it. Coverage sits on the rules that would corrupt pay: parsing, currency match, effective dates, payroll membership, directory salary sort, auth, and the CSV. The React layer is a client of that API. A browser pass checks the flows; a component test suite would mostly restate the same contract.
+Minitest, because the app already used it. Coverage sits on the rules that would corrupt pay: parsing, currency match, effective dates, payroll membership, directory salary sort, auth, and the CSV. The React layer is a client of that API. The login screen was checked in a browser, and the signed-in flows were checked against the running server. A component test suite would mostly restate the same contract.
 
 ## Deployment shape
 

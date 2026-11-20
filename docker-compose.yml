@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: production
+      RAILS_DISABLE_SSL: "1"
+      RAILS_LOG_LEVEL: info
+      # Demo only. Replace this before pointing the container at anything but a laptop.
+      SECRET_KEY_BASE: assessment-only-secret-key-base-change-for-a-real-deployment-0123456789
+      HR_PASSWORD: Acme-HR-2026
+    volumes:
+      - acme-sqlite:/rails/storage
+
+volumes:
+  acme-sqlite:
