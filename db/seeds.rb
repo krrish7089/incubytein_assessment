@@ -1,9 +1,4 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# Idempotent. Reference data and the HR account are ensured every time.
+# The 10,000 employees are inserted only when the table is empty.
+# Reset with `bin/rails db:seed:replant` if you need a fresh workforce.
+Workforce::Seeder.new.call
